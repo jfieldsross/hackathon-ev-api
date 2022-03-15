@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.harrydulaney</groupId>
-    <artifactId>firebase-auth-api-starter</artifactId>
+    <artifactId>hack-ev-api</artifactId>
     <version>1.0.0</version>
     <name>firebase-auth-api</name>
     <description>Firebase Auth Full Stack Web Application Starter Projects</description>

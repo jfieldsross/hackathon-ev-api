@@ -21,9 +21,6 @@ public class FirebaseConfig {
 
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(FirebaseConfig.class);
 
-    @Value("${firebase.database.url}")
-    private String databaseUrl;
-
     @Value("${firebase.config}")
     private String config;
 
@@ -39,13 +36,9 @@ public class FirebaseConfig {
         }
         try {
             FirebaseOptions.Builder options = FirebaseOptions.builder();
-            options.setCredentials(GoogleCredentials.fromStream(inputStream))
-                    .setDatabaseUrl(databaseUrl);
-            if (FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options.build());
-                LOG.info("FirebaseApp ------------------------------ Firebase services initialized for Backend.");
-            }
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            options.setCredentials(GoogleCredentials.fromStream(inputStream));
+            FirebaseApp.initializeApp(options.build());
+            LOG.info("FirebaseApp ------------------------------ Firebase services initialized for Backend.");
         } catch (IOException e) {
             e.printStackTrace();
         }

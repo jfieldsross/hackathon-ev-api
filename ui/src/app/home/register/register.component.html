@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-9 col-md-7 col-lg-6 col-xl-5 justify-content-center">
+            <div class="card text-center p-2 w-100">
+                <article class="card-body text-center">
+                        <h4 class="text-center card-title">Register New Account</h4>
+                    <form [formGroup]="registrationForm"
+                        (ngSubmit)="submitRegistration(emailAddress.value,confirmEmailAddress.value,password.value,passwordConfirm.value)">
+                        <div class="form-group">
+                            <label class="w-100" for="emailAddress"><i><small>Email Address</small></i> </label>
+                            <input id="emailAddress" type="text" formControlName="email" class="w-75 mt-2"
+                                placeholder="Email Address" #emailAddress required>
+                        </div>
+                        <div class="form-group">
+                            <input id="confirmEmailAddress" formControlName="emailConfirm" type="text" class="w-75 mt-1"
+                                placeholder="Confirm Email Address" #confirmEmailAddress required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><i><small>Create a password with
+                                        letters/numbers/special
+                                        characters</small></i></label><br>
+                            <input id="password" type="password" formControlName="pass" class="w-75 mt-2"
+                                placeholder="Password" #password required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="w-75 mt-1" formControlName="passConfirm"
+                                placeholder="Confirm Password" #passwordConfirm required>
+                        </div>        
+                        <div class="form-group mt-3">
+                            <button [disabled]="!registrationForm.valid" class="btn btn-primary w-25 m-2" value="Submit"
+                                type="submit">
+                                Submit
+                            </button>
+                            <button type="button" routerLink="/home" class="btn btn-primary m-2">Cancel</button>
+                        </div>
+                    </form>
+
+                    <hr>
+                    
+                    <!-- <div class="forgotPassword">
+                <span routerLink="/forgot-password">Forgot Password?</span>
+              </div> -->
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

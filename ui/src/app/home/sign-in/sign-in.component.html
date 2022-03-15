@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <div class="row justify-content-center align-items-center">
+    <!-- Card -->
+    <div class="col-auto justify-content-center">
+      <div class="card text-center p-2 w-100">
+        <article class="card-body">
+          <h4 class="card-title">Choose a sign in method</h4>
+          <h5 class="card-subtitle text-muted mb-2">
+            Use email address of an existing accounts
+          </h5>
+          <form [formGroup]="signinForm" class="form-group align-items-center" (ngSubmit)="submitSignIn()">
+            <input type="email" class="form-control w-100 mb-2" placeholder="Email Address"
+              formControlName="emailAddress" #email required>
+            <input type="password" class="form-control w-100" placeholder="Password" formControlName="password"
+              #password required>
+            <label class="text-danger" *ngIf="signinForm.controls['emailAddress'].hasError('email')">
+              Please enter a valid email address
+            </label>
+            <div class="mt-3">
+              <input type="submit" class="btn btn-primary w-25" value="Sign in" [disabled]="!signinForm.valid">
+            </div><br>
+            <hr>
+            <h5 class="card-subtitle text-muted">Using third party provider:</h5>
+            <button type="button" class="btn btn-danger my-2 rounded-circle mx-1"
+              (click)="authService.signInWithGoogle()">
+              <fa-icon [icon]="['fab','google']"></fa-icon>
+            </button>
+            <button type="button" class="btn btn-success my-2 rounded-circle mx-1" disabled>
+              <fa-icon [icon]="['fab','facebook']"></fa-icon>
+            </button>
+            <button type="button" class="btn btn-info my-2 rounded-circle mx-1" disabled>
+              <fa-icon [icon]="['fab','twitter']"></fa-icon>
+            </button>
+          </form>
+          <hr>
+          <h5 class="card-subtitle mb-2">Create your File Commander Account</h5>
+          <button type="button" routerLink="/register" class="btn btn-primary">Register New Account</button>
+          <button type="button" class="btn btn-warning m-2" (click)="resetPassword()">
+            Password Reset
+          </button>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

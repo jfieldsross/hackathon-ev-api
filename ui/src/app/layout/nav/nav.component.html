@@ -1,0 +1,25 @@
+<nav class="navbar navbar-fixed-top navbar-expand ps-3">
+  <nav class="navbar navbar-fixed-top navbar-collapse collapsed me-3">
+    <a class="navbar-brand">Firebase Auth Starter UI</a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a type="button" routerLink="/home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a [href]="aboutPageLink" target="_blank" type="button" class="nav-link">About</a>
+      </li>
+      <div *ngIf="authService.isSignedIn()">
+        <li class="nav-item">
+          <a class="btn btn-dark btn-outline-light waves-light mx-5" (click)="authService.signOutUser()">Sign Out</a>
+        </li>
+        <div *ngIf="!authService.isEmailVerified()">
+          <li class="nav-item">
+            <a class="btn btn-warning waves-light mx-5" (click)="authService.verifyUserEmail()">Verify
+              Email</a>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </nav>
+</nav>
+<router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 package com.harrydulaney.firebaseauthstarter.controller;
 
+import com.harrydulaney.firebaseauthstarter.service.DataService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,20 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * User controller - Api for passing authenticated User info to UI.
- * https://firebase.google.com/docs/auth/admin/manage-cookies
- */
 @RestController
-@RequestMapping("api/user")
-public class UserController {
+@RequestMapping("api/data")
+public class DataController {
 
+    private DataService dataService;
 
-    public UserController() {
+    public DataController(DataService dataService) {
+        this.dataService = dataService;
     }
 
 
-    @GetMapping("secured-message")
+    @GetMapping("data")
     public Map<String, Object> getBasic() {
         Map<String, Object> model = new HashMap<>();
         model.put("content", "Secure Message sent Back!");

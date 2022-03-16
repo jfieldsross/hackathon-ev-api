@@ -1,6 +1,5 @@
 package com.harrydulaney.firebaseauthstarter.controller;
 
-import com.harrydulaney.firebaseauthstarter.security.SecurityService;
 import com.harrydulaney.firebaseauthstarter.security.model.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

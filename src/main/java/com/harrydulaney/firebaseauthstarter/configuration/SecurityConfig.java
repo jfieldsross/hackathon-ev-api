@@ -56,14 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(new ArrayList<>(Arrays.asList("http://localhost:4200")));
-        configuration.setAllowedMethods(new ArrayList<>(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")));
-        configuration.setAllowedHeaders(new ArrayList<>(Arrays.asList("Authorization", "Origin", "Content-Type", "Accept",
-                "Accept-Encoding", "Accept-Language", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers",
-                "Access-Control - Request-Method", "X-Requested-With", "X-Auth-Token", "X-Xsrf-Token",
-                "Cache-Control", " Id-Token")));
+        configuration.setAllowedOrigins(new ArrayList<>(Collections.singletonList("*")));
+        configuration.setAllowedMethods(new ArrayList<>(Collections.singletonList("*")));
+        configuration.setAllowedHeaders(new ArrayList<>(Collections.singletonList("*")));
         configuration.setAllowCredentials(true);
-        configuration.setExposedHeaders(new ArrayList<>(Arrays.asList("X-Xsrf-Token")));
+        configuration.setExposedHeaders(new ArrayList<>(Collections.singletonList("X-Xsrf-Token")));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -73,7 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity httpSecurity)
             throws Exception {
         httpSecurity
-                .csrf().disable().cors().disable()
+                .cors().configurationSource(corsConfigurationSource()).and()
+                .csrf().disable()
                 .formLogin().disable()
                 .httpBasic().disable()
                 .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint())
